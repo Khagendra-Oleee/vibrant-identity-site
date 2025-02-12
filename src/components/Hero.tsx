@@ -39,12 +39,34 @@ const Hero = () => {
             className="relative"
           >
             <div className="relative w-full aspect-square rounded-2xl overflow-hidden">
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-tr from-accent to-primary opacity-20"
+                animate={{
+                  opacity: [0.2, 0.3, 0.2],
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
+              />
               <img
-                src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7"
+                src="/lovable-uploads/f482f63a-6b6d-42d0-adaa-8b3469621f1d.png"
                 alt="Hero"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent mix-blend-overlay" />
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent mix-blend-overlay"
+                animate={{
+                  opacity: [0.3, 0.5, 0.3],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
+              />
             </div>
           </motion.div>
         </div>

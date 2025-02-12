@@ -32,14 +32,20 @@ const Work = () => {
   return (
     <section id="my-work" className="py-20 bg-secondary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
           <span className="text-accent text-sm font-semibold tracking-wider uppercase">
             Portfolio
           </span>
           <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-primary">
             Featured Work
           </h2>
-        </div>
+        </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.div
@@ -48,34 +54,47 @@ const Work = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group cursor-pointer"
+              whileHover={{ y: -10 }}
+              className="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
               onClick={() => setSelectedProject(project)}
             >
-              <div className="relative overflow-hidden rounded-xl">
-                <img
+              <div className="relative overflow-hidden">
+                <motion.img
                   src={project.image}
                   alt={project.title}
-                  className="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="w-full aspect-video object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
                 />
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="text-white text-lg font-medium">
-                    View Project
-                  </span>
-                </div>
-              </div>
-              <h3 className="mt-4 text-xl font-semibold text-primary">
-                {project.title}
-              </h3>
-              <p className="mt-2 text-gray-600">{project.description}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 text-sm bg-accent/10 text-accent rounded-full"
+                <motion.div
+                  className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  initial={false}
+                >
+                  <motion.span
+                    initial={{ y: 20, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.1 }}
+                    className="text-white text-lg font-medium"
                   >
-                    {tag}
-                  </span>
-                ))}
+                    View Project
+                  </motion.span>
+                </motion.div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-primary">
+                  {project.title}
+                </h3>
+                <p className="mt-2 text-gray-600">{project.description}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 text-sm bg-accent/10 text-accent rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
@@ -88,13 +107,13 @@ const Work = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
+              initial={{ scale: 0.95, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 20 }}
               onClick={(e) => e.stopPropagation()}
               className="bg-white rounded-xl max-w-2xl w-full p-6"
             >
@@ -109,13 +128,28 @@ const Work = () => {
                   <X size={24} />
                 </button>
               </div>
-              <img
+              <motion.img
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
                 src={selectedProject.image}
                 alt={selectedProject.title}
                 className="w-full aspect-video object-cover rounded-lg mb-4"
               />
-              <p className="text-gray-600 mb-4">{selectedProject.description}</p>
-              <div className="flex flex-wrap gap-2">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-gray-600 mb-4"
+              >
+                {selectedProject.description}
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="flex flex-wrap gap-2"
+              >
                 {selectedProject.tags.map((tag) => (
                   <span
                     key={tag}
@@ -124,7 +158,7 @@ const Work = () => {
                     {tag}
                   </span>
                 ))}
-              </div>
+              </motion.div>
             </motion.div>
           </motion.div>
         )}

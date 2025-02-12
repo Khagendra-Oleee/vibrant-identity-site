@@ -44,14 +44,20 @@ const Skills = () => {
   return (
     <section id="skills" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
           <span className="text-accent text-sm font-semibold tracking-wider uppercase">
             Expertise
           </span>
           <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-primary">
             Technical Skills
           </h2>
-        </div>
+        </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
@@ -60,14 +66,25 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
+              whileHover={{
+                scale: 1.02,
+                boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+              }}
+              className="bg-white rounded-xl shadow-lg p-6 transition-all duration-300"
             >
               <h3 className="text-xl font-semibold text-primary mb-4">
                 {category.title}
               </h3>
               <div className="space-y-4">
                 {category.skills.map((skill, index) => (
-                  <div key={skill.name} className="space-y-2">
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="space-y-2"
+                  >
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">{skill.name}</span>
                       <span className="text-accent">{skill.level}%</span>
@@ -76,12 +93,29 @@ const Skills = () => {
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1, delay: index * 0.1 }}
+                        transition={{
+                          duration: 1,
+                          delay: index * 0.1,
+                          ease: "easeOut",
+                        }}
                         viewport={{ once: true }}
-                        className="h-full bg-accent rounded-full"
-                      />
+                        className="h-full bg-accent rounded-full relative"
+                      >
+                        <motion.div
+                          className="absolute inset-0 bg-white/20"
+                          animate={{
+                            opacity: [0, 0.5, 0],
+                            x: ["-100%", "100%"],
+                          }}
+                          transition={{
+                            duration: 1.5,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
+                        />
+                      </motion.div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
