@@ -43,13 +43,14 @@ const Hero = () => {
           >
             <div className="relative w-full aspect-square rounded-2xl overflow-hidden">
               <motion.div
-                className="absolute inset-0 bg-gradient-to-tr from-accent to-primary opacity-20"
+                className="absolute inset-0 bg-gradient-to-tr from-accent/30 to-primary/30 mix-blend-overlay"
                 animate={{
-                  opacity: [0.2, 0.3, 0.2],
+                  opacity: [0.3, 0.5, 0.3],
                   scale: [1, 1.05, 1],
+                  rotate: [0, 3, 0],
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 5,
                   repeat: Infinity,
                   repeatType: "reverse",
                 }}
@@ -62,7 +63,7 @@ const Hero = () => {
                 animate={{ 
                   scale: 1,
                   opacity: 1,
-                  rotate: [0, 1, 0, -1, 0],
+                  rotate: [0, 2, 0, -2, 0],
                 }}
                 transition={{
                   scale: {
@@ -73,14 +74,15 @@ const Hero = () => {
                     duration: 1
                   },
                   rotate: {
-                    duration: 5,
+                    duration: 8,
                     repeat: Infinity,
-                    repeatType: "reverse",
+                    repeatType: "mirror",
                     ease: "easeInOut"
                   }
                 }}
                 whileHover={{
                   scale: 1.05,
+                  filter: "brightness(1.1)",
                   transition: { duration: 0.3 }
                 }}
               />
@@ -88,10 +90,10 @@ const Hero = () => {
                 className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent mix-blend-overlay"
                 animate={{
                   opacity: [0.3, 0.5, 0.3],
-                  backdropFilter: ["blur(0px)", "blur(2px)", "blur(0px)"],
+                  backdropFilter: ["blur(0px)", "blur(3px)", "blur(0px)"],
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 4,
                   repeat: Infinity,
                   repeatType: "reverse",
                 }}
@@ -100,10 +102,10 @@ const Hero = () => {
                 className="absolute inset-0 border-2 border-accent/20 rounded-2xl"
                 animate={{
                   scale: [1, 1.02, 1],
-                  opacity: [0.2, 0.3, 0.2],
+                  opacity: [0.2, 0.4, 0.2],
                   boxShadow: [
                     "0 0 0 rgba(212, 175, 55, 0)",
-                    "0 0 20px rgba(212, 175, 55, 0.3)",
+                    "0 0 30px rgba(212, 175, 55, 0.4)",
                     "0 0 0 rgba(212, 175, 55, 0)"
                   ]
                 }}
@@ -114,9 +116,24 @@ const Hero = () => {
                 }}
               />
               <motion.div
-                className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/5 to-transparent"
+                className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/10 to-transparent"
                 animate={{
                   y: ["0%", "100%", "0%"]
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              />
+              <motion.div
+                className="absolute inset-0"
+                animate={{
+                  background: [
+                    "radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%)",
+                    "radial-gradient(circle at 70% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 50%)",
+                    "radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%)",
+                  ]
                 }}
                 transition={{
                   duration: 8,
