@@ -54,10 +54,35 @@ const Hero = () => {
                   repeatType: "reverse",
                 }}
               />
-              <img
+              <motion.img
                 src="/lovable-uploads/f482f63a-6b6d-42d0-adaa-8b3469621f1d.png"
                 alt="Hero"
                 className="w-full h-full object-cover"
+                initial={{ scale: 1.2, opacity: 0 }}
+                animate={{ 
+                  scale: 1,
+                  opacity: 1,
+                  rotate: [0, 1, 0, -1, 0],
+                }}
+                transition={{
+                  scale: {
+                    duration: 1.5,
+                    ease: "easeOut"
+                  },
+                  opacity: {
+                    duration: 1
+                  },
+                  rotate: {
+                    duration: 5,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut"
+                  }
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.3 }
+                }}
               />
               <motion.div
                 className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent mix-blend-overlay"
@@ -76,11 +101,27 @@ const Hero = () => {
                 animate={{
                   scale: [1, 1.02, 1],
                   opacity: [0.2, 0.3, 0.2],
+                  boxShadow: [
+                    "0 0 0 rgba(212, 175, 55, 0)",
+                    "0 0 20px rgba(212, 175, 55, 0.3)",
+                    "0 0 0 rgba(212, 175, 55, 0)"
+                  ]
                 }}
                 transition={{
                   duration: 4,
                   repeat: Infinity,
                   repeatType: "reverse",
+                }}
+              />
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/5 to-transparent"
+                animate={{
+                  y: ["0%", "100%", "0%"]
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear"
                 }}
               />
             </div>
