@@ -92,25 +92,77 @@ const Contact = () => {
             </motion.div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-8 border border-accent/10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="flex flex-col items-center"
-            >
-              <motion.button
-                onClick={handleWhatsAppClick}
-                whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(212, 175, 55, 0.2)" }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center px-8 py-4 bg-accent text-white rounded-full text-lg font-medium hover:bg-accent/90 transition-all duration-200"
-              >
-                Contact Me
-                <Send className="ml-2 -mr-1 h-5 w-5" />
-              </motion.button>
-            </motion.div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-xl shadow-lg border border-accent/10 overflow-hidden"
+          >
+            <div className="p-8 relative">
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent"
+                animate={{
+                  opacity: [0.5, 0.8, 0.5],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
+              />
+              <div className="relative z-10 space-y-6">
+                <h3 className="text-2xl font-bold text-primary">Ready to Start Your Project?</h3>
+                <p className="text-gray-600">
+                  I'm currently available for freelance work and exciting collaborations. 
+                  Whether you need a website, mobile app, or custom software solution, 
+                  let's discuss how we can bring your vision to life.
+                </p>
+                <ul className="space-y-3 text-gray-600">
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-accent rounded-full mr-2"></span>
+                    Custom development tailored to your needs
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-accent rounded-full mr-2"></span>
+                    Fast response and regular updates
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-accent rounded-full mr-2"></span>
+                    Clear communication throughout the project
+                  </li>
+                </ul>
+                <motion.div
+                  className="flex justify-center pt-6"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <motion.button
+                    onClick={handleWhatsAppClick}
+                    className="relative inline-flex items-center px-8 py-4 bg-accent text-white rounded-full text-lg font-medium overflow-hidden group"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <motion.div
+                      className="absolute inset-0 bg-white opacity-20"
+                      animate={{
+                        scale: [1, 2],
+                        opacity: [0.2, 0],
+                      }}
+                      transition={{
+                        duration: 1,
+                        repeat: Infinity,
+                        repeatType: "loop",
+                      }}
+                    />
+                    <span className="relative flex items-center">
+                      Contact Me
+                      <Send className="ml-2 -mr-1 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </motion.button>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
