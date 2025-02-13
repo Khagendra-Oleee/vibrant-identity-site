@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, ExternalLink } from "lucide-react";
 
 const projects = [
   {
@@ -30,7 +30,7 @@ const Work = () => {
   );
 
   return (
-    <section id="my-work" className="py-20 bg-secondary">
+    <section id="my-work" className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -39,12 +39,22 @@ const Work = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-accent text-sm font-semibold tracking-wider uppercase">
+          <motion.span
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-accent text-sm font-semibold tracking-wider uppercase"
+          >
             Portfolio
-          </span>
-          <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-primary">
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mt-2 text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+          >
             Featured Work
-          </h2>
+          </motion.h2>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
@@ -54,38 +64,35 @@ const Work = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -10 }}
-              className="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
-              onClick={() => setSelectedProject(project)}
+              className="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden aspect-video">
                 <motion.img
                   src={project.image}
                   alt={project.title}
-                  className="w-full aspect-video object-cover"
+                  className="w-full h-full object-cover"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 />
                 <motion.div
-                  className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={false}
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end justify-between p-6"
                 >
-                  <motion.span
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.1 }}
-                    className="text-white text-lg font-medium"
+                  <div>
+                    <h3 className="text-white text-xl font-semibold">{project.title}</h3>
+                    <p className="text-white/80 text-sm mt-2">{project.description}</p>
+                  </div>
+                  <button
+                    onClick={() => setSelectedProject(project)}
+                    className="bg-accent text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   >
-                    View Project
-                  </motion.span>
+                    <ExternalLink size={20} />
+                  </button>
                 </motion.div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-primary">
-                  {project.title}
-                </h3>
-                <p className="mt-2 text-gray-600">{project.description}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
@@ -115,50 +122,39 @@ const Work = () => {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-xl max-w-2xl w-full p-6"
+              className="bg-white rounded-xl max-w-2xl w-full overflow-hidden"
             >
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-2xl font-bold text-primary">
-                  {selectedProject.title}
-                </h3>
+              <div className="relative">
+                <motion.img
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  className="w-full aspect-video object-cover"
+                  initial={{ scale: 1.1 }}
+                  animate={{ scale: 1 }}
+                />
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="absolute top-4 right-4 text-white bg-black/50 p-2 rounded-full hover:bg-black/70 transition-colors"
                 >
-                  <X size={24} />
+                  <X size={20} />
                 </button>
               </div>
-              <motion.img
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                src={selectedProject.image}
-                alt={selectedProject.title}
-                className="w-full aspect-video object-cover rounded-lg mb-4"
-              />
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="text-gray-600 mb-4"
-              >
-                {selectedProject.description}
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="flex flex-wrap gap-2"
-              >
-                {selectedProject.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 text-sm bg-accent/10 text-accent rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </motion.div>
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-primary mb-2">
+                  {selectedProject.title}
+                </h3>
+                <p className="text-gray-600 mb-4">{selectedProject.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 text-sm bg-accent/10 text-accent rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         )}

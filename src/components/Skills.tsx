@@ -42,7 +42,7 @@ const skillCategories = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20">
+    <section id="skills" className="py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -51,12 +51,22 @@ const Skills = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-accent text-sm font-semibold tracking-wider uppercase">
+          <motion.span 
+            className="text-accent text-sm font-semibold tracking-wider uppercase"
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
             Expertise
-          </span>
-          <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-primary">
+          </motion.span>
+          <motion.h2 
+            className="mt-2 text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
             Technical Skills
-          </h2>
+          </motion.h2>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {skillCategories.map((category, categoryIndex) => (
@@ -70,12 +80,23 @@ const Skills = () => {
                 scale: 1.02,
                 boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
               }}
-              className="bg-white rounded-xl shadow-lg p-6 transition-all duration-300"
+              className="bg-white rounded-xl shadow-lg p-6 transition-all duration-300 relative overflow-hidden"
             >
-              <h3 className="text-xl font-semibold text-primary mb-4">
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent"
+                animate={{
+                  opacity: [0.5, 0.8, 0.5],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
+              />
+              <h3 className="text-xl font-semibold text-primary mb-4 relative">
                 {category.title}
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-4 relative">
                 {category.skills.map((skill, index) => (
                   <motion.div
                     key={skill.name}
@@ -86,10 +107,10 @@ const Skills = () => {
                     className="space-y-2"
                   >
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">{skill.name}</span>
-                      <span className="text-accent">{skill.level}%</span>
+                      <span className="text-gray-600 font-medium">{skill.name}</span>
+                      <span className="text-accent font-semibold">{skill.level}%</span>
                     </div>
-                    <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div className="h-2 bg-gray-100 rounded-full overflow-hidden relative">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
@@ -99,16 +120,15 @@ const Skills = () => {
                           ease: "easeOut",
                         }}
                         viewport={{ once: true }}
-                        className="h-full bg-accent rounded-full relative"
+                        className="h-full bg-gradient-to-r from-accent to-accent/80 rounded-full relative"
                       >
                         <motion.div
-                          className="absolute inset-0 bg-white/20"
+                          className="absolute inset-0 bg-white/30"
                           animate={{
-                            opacity: [0, 0.5, 0],
                             x: ["-100%", "100%"],
                           }}
                           transition={{
-                            duration: 1.5,
+                            duration: 2,
                             repeat: Infinity,
                             ease: "linear",
                           }}
