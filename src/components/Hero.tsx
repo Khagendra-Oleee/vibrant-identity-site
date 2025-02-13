@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, X } from "lucide-react";
@@ -41,72 +40,14 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative w-full aspect-square rounded-2xl overflow-hidden">
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-tr from-accent/30 to-primary/30 mix-blend-overlay"
+            <div className="relative w-full aspect-square">
+              <motion.div 
+                className="absolute inset-0 rounded-full"
                 animate={{
-                  opacity: [0.3, 0.5, 0.3],
-                  scale: [1, 1.05, 1],
-                  rotate: [0, 3, 0],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-              />
-              <motion.img
-                src="/lovable-uploads/f482f63a-6b6d-42d0-adaa-8b3469621f1d.png"
-                alt="Hero"
-                className="w-full h-full object-cover"
-                initial={{ scale: 1.2, opacity: 0 }}
-                animate={{ 
-                  scale: 1,
-                  opacity: 1,
-                  rotate: [0, 2, 0, -2, 0],
-                }}
-                transition={{
-                  scale: {
-                    duration: 1.5,
-                    ease: "easeOut"
-                  },
-                  opacity: {
-                    duration: 1
-                  },
-                  rotate: {
-                    duration: 8,
-                    repeat: Infinity,
-                    repeatType: "mirror",
-                    ease: "easeInOut"
-                  }
-                }}
-                whileHover={{
-                  scale: 1.05,
-                  filter: "brightness(1.1)",
-                  transition: { duration: 0.3 }
-                }}
-              />
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent mix-blend-overlay"
-                animate={{
-                  opacity: [0.3, 0.5, 0.3],
-                  backdropFilter: ["blur(0px)", "blur(3px)", "blur(0px)"],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-              />
-              <motion.div
-                className="absolute inset-0 border-2 border-accent/20 rounded-2xl"
-                animate={{
-                  scale: [1, 1.02, 1],
-                  opacity: [0.2, 0.4, 0.2],
                   boxShadow: [
-                    "0 0 0 rgba(212, 175, 55, 0)",
-                    "0 0 30px rgba(212, 175, 55, 0.4)",
-                    "0 0 0 rgba(212, 175, 55, 0)"
+                    "0 0 20px rgba(212, 175, 55, 0.3), 0 0 60px rgba(212, 175, 55, 0.1)",
+                    "0 0 40px rgba(212, 175, 55, 0.5), 0 0 100px rgba(212, 175, 55, 0.2)",
+                    "0 0 20px rgba(212, 175, 55, 0.3), 0 0 60px rgba(212, 175, 55, 0.1)"
                   ]
                 }}
                 transition={{
@@ -116,23 +57,66 @@ const Hero = () => {
                 }}
               />
               <motion.div
-                className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/10 to-transparent"
+                className="absolute inset-0 rounded-full bg-gradient-to-tr from-accent/30 to-primary/30"
                 animate={{
-                  y: ["0%", "100%", "0%"]
+                  opacity: [0.3, 0.5, 0.3],
+                  scale: [0.98, 1, 0.98],
                 }}
                 transition={{
-                  duration: 6,
+                  duration: 4,
                   repeat: Infinity,
-                  ease: "linear"
+                  repeatType: "reverse",
                 }}
               />
+              <motion.div 
+                className="relative w-full h-full rounded-full overflow-hidden border-4 border-accent/30"
+                animate={{
+                  borderColor: ["rgba(212, 175, 55, 0.3)", "rgba(212, 175, 55, 0.6)", "rgba(212, 175, 55, 0.3)"]
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatType: "reverse"
+                }}
+              >
+                <motion.img
+                  src="/lovable-uploads/f482f63a-6b6d-42d0-adaa-8b3469621f1d.png"
+                  alt="Hero"
+                  className="w-full h-full object-cover"
+                  initial={{ scale: 1.2, opacity: 0 }}
+                  animate={{ 
+                    scale: 1,
+                    opacity: 1,
+                    rotate: [0, 5, 0, -5, 0],
+                  }}
+                  transition={{
+                    scale: {
+                      duration: 1.5,
+                      ease: "easeOut"
+                    },
+                    opacity: {
+                      duration: 1
+                    },
+                    rotate: {
+                      duration: 12,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      ease: "easeInOut"
+                    }
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    transition: { duration: 0.3 }
+                  }}
+                />
+              </motion.div>
               <motion.div
-                className="absolute inset-0"
+                className="absolute inset-0 rounded-full"
                 animate={{
                   background: [
-                    "radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%)",
-                    "radial-gradient(circle at 70% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 50%)",
-                    "radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%)",
+                    "radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.2) 0%, transparent 60%)",
+                    "radial-gradient(circle at 70% 70%, rgba(212, 175, 55, 0.2) 0%, transparent 60%)",
+                    "radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.2) 0%, transparent 60%)"
                   ]
                 }}
                 transition={{
