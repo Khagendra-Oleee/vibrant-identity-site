@@ -29,85 +29,89 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-          >
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-accent/10 rounded-full">
-                <Mail className="h-6 w-6 text-accent" />
+        <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-12 max-w-6xl mx-auto">
+          <div className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-accent/10 group"
+            >
+              <div className="flex items-center space-x-4">
+                <div className="p-3 bg-accent/10 rounded-full group-hover:bg-accent/20 transition-colors">
+                  <Mail className="h-6 w-6 text-accent" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-primary">Email</h3>
+                  <a href="mailto:contact@example.com" className="text-gray-600 hover:text-accent transition-colors">
+                    contact@example.com
+                  </a>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-primary">Email</h3>
-                <a href="mailto:contact@example.com" className="text-gray-600 hover:text-accent">
-                  contact@example.com
-                </a>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-          >
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-accent/10 rounded-full">
-                <MapPin className="h-6 w-6 text-accent" />
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-accent/10 group"
+            >
+              <div className="flex items-center space-x-4">
+                <div className="p-3 bg-accent/10 rounded-full group-hover:bg-accent/20 transition-colors">
+                  <MapPin className="h-6 w-6 text-accent" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-primary">Address</h3>
+                  <p className="text-gray-600">
+                    123 Main Street, New York, NY 10001
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-primary">Address</h3>
-                <p className="text-gray-600">
-                  123 Main Street, New York, NY 10001
-                </p>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-          >
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-accent/10 rounded-full">
-                <Phone className="h-6 w-6 text-accent" />
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-accent/10 group"
+            >
+              <div className="flex items-center space-x-4">
+                <div className="p-3 bg-accent/10 rounded-full group-hover:bg-accent/20 transition-colors">
+                  <Phone className="h-6 w-6 text-accent" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-primary">Phone</h3>
+                  <a href="tel:+1234567890" className="text-gray-600 hover:text-accent transition-colors">
+                    +1 (234) 567-890
+                  </a>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-primary">Phone</h3>
-                <a href="tel:+1234567890" className="text-gray-600 hover:text-accent">
-                  +1 (234) 567-890
-                </a>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-8 border border-accent/10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="flex flex-col items-center"
+            >
+              <motion.button
+                onClick={handleWhatsAppClick}
+                whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(212, 175, 55, 0.2)" }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center px-8 py-4 bg-accent text-white rounded-full text-lg font-medium hover:bg-accent/90 transition-all duration-200"
+              >
+                Contact Me
+                <Send className="ml-2 -mr-1 h-5 w-5" />
+              </motion.button>
+            </motion.div>
+          </div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="flex justify-center"
-        >
-          <motion.button
-            onClick={handleWhatsAppClick}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center px-8 py-4 bg-accent text-white rounded-full text-lg font-medium hover:bg-accent/90 transition-colors duration-200 shadow-lg hover:shadow-xl"
-          >
-            Contact Me
-            <Send className="ml-2 -mr-1 h-5 w-5" />
-          </motion.button>
-        </motion.div>
       </div>
     </section>
   );
